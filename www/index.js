@@ -6,27 +6,18 @@ function onDeviceReady(){
 
 var initResult = function(result){
     bluetoothle.initializePeripheral(initPeripheralSuccess, initError, {"request": true, "restoreKey":"bluetoothleplugin-peripheral"});
-}
-
-var initPeripheralSuccess = function(result){
     bluetoothle.addService(serviceSuccess, addServiceError, {service: "12345"});
-}
-
-var serviceSuccess = function(result){
     bluetoothle.startAdvertising(adSuccess, startAdError, {"service": "12345", "name": "The Peripheral!"});
 }
 
-var initError = function(error){
+var initError = function(){
     alert("initError");
-    alert(error);
 }
 
-var addServiceError = function(error){
+var addServiceError = function(){
     alert("addServiceError");
-    alert(error);
 }
 
-var startAdError = function(error){
+var startAdError = function(){
     alert("startAdError");
-    alert(error);
 }
