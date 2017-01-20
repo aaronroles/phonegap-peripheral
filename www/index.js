@@ -25,14 +25,14 @@ var addServiceSuccess = function(result){
     alert(result.status);
 }
 
-var addServiceError = function(){
-    alert("addServiceError");
+var addServiceError = function(error){
+    alert(error.message);
 }
 
 // advertising
 var startAdSuccess = function(result){
     alert(result.status);
 }
-var startAdError = function(){
-    alert("startAdError");
+var startAdError = function(error){
+    alert(error.message);
 }
