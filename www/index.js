@@ -16,8 +16,8 @@ var initPeripheralSuccess = function(result){
     bluetoothle.startAdvertising(startAdSuccess, startAdError, {"service": "12345", "name": "The Peripheral!"});
 }
 
-var initError = function(){
-    alert("initError");
+var initError = function(error){
+    alert(error.message);
 }
 
 // service 
