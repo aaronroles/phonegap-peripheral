@@ -1,23 +1,38 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
-    bluetoothle.initialize(initResult, {"request": true, "statusReceiver":true, "restoreKey": "bluetoothleplugin-central"});
+    bluetoothle.initialize(initResult, {"request": true, "statusReceiver":true});
 }
 
 var initResult = function(result){
-    bluetoothle.initializePeripheral(initPeripheralSuccess, initError, {"request": true, "restoreKey":"bluetoothleplugin-peripheral"});
-    bluetoothle.addService(serviceSuccess, addServiceError, {service: "12345"});
-    bluetoothle.startAdvertising(adSuccess, startAdError, {"service": "12345", "name": "The Peripheral!"});
+    if(result.status == "enabled"){
+        // enabled
+        bluetoothle.initializePeripheral(initPeripheralSuccess, initError, {"request": true, "restoreKey":"bluetoothleplugin-peripheral"});
+    }
+}
+
+var initPeripheralSuccess = function(result){
+    bluetoothle.addService(addServiceSuccess, addServiceError, {service: "12345"});
+    bluetoothle.startAdvertising(startAdSuccess, startAdError, {"service": "12345", "name": "The Peripheral!"});
 }
 
 var initError = function(){
     alert("initError");
 }
 
+// service 
+var addServiceSuccess = function(result){
+    alert(result.status);
+}
+
 var addServiceError = function(){
     alert("addServiceError");
 }
 
+// advertising
+var startAdSuccess = function(result){
+    alert(result.status);
+}
 var startAdError = function(){
     alert("startAdError");
 }
